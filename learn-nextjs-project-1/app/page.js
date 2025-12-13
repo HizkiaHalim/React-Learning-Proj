@@ -20,7 +20,7 @@ export default function Home() {
             <Link href="/meals">Explore meals</Link>
           </div>
           <div>
-            <MealsGrid meals={[]}/>
+            <MealsGrid meals={[]} />
           </div>
         </div>
       </header>

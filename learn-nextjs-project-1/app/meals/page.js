@@ -1,5 +1,18 @@
 import Link from "next/link";
 import classes from "./page.module.css";
+import { getMeals } from "@/lib/meals";
+import MealsGrid from "@/components/meals/meals-grid";
+import { Suspense } from "react";
+
+export const metadata = {
+  title: 'All Meals',
+  description: 'Browse delicious meals',
+}
+
+function Meals() {
+  const meals = getMeals();
+  return <MealsGrid meals={meals} />;
+}
 
 export default function MealsPage() {
   return (
@@ -17,7 +30,14 @@ export default function MealsPage() {
           <Link href="/meals/share">Share your favourite recipe</Link>
         </p>
       </header>
-      <main className={classes.main}></main>
+      <main className={classes.main}>
+        <Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+          <Meals />
+        </Suspense>
+      </main>
     </>
   );
 }
+
+
+
